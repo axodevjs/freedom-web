@@ -10,6 +10,7 @@ import Link from "next/link";
 export default function HomePage() {
   const { role } = useAuthStore();
 
+  if (typeof window === "undefined") return;
   return (
     <MainLayout>
       {role === "User" ? (

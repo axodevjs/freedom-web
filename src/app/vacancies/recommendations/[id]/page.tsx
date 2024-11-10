@@ -10,14 +10,18 @@ import {
   CardTitle,
 } from "@/shared/shadcn/components/ui/card";
 import { Briefcase, Building, Clock, DollarSign, MapPin } from "lucide-react";
-import React from "react";
+import { useEffect, useState } from "react";
 
 export default function RecommendationsPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = React.use(params);
+  const [id, setId] = useState<string>("");
+
+  useEffect(() => {
+    params.then(({ id }) => setId(id));
+  }, [params]);
 
   const { data: candidates, isLoading, isError } = useRecommendations(id);
 

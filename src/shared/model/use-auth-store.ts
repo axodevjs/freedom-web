@@ -13,6 +13,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   isChecking: true, // Initially checking
   role: null,
   checkAuth: () => {
+    if (typeof window === "undefined") return;
     const accessToken = localStorage.getItem("accessToken");
     const roleL = localStorage.getItem("role");
     set({ role: roleL });

@@ -72,6 +72,7 @@ export default function LoginPage() {
   });
 
   const onLoginSubmit = async (data: LoginFormValues) => {
+    if (typeof window === "undefined") return;
     const result = await login(data);
     localStorage.setItem("accessToken", result.data.accessToken);
     localStorage.setItem("refreshToken", result.data.refreshToken);
@@ -82,6 +83,7 @@ export default function LoginPage() {
   };
 
   const onRegisterSubmit = async (data: RegisterFormValues) => {
+    if (typeof window === "undefined") return;
     const result = await registerUser(data);
     localStorage.setItem("accessToken", result.data.accessToken);
     localStorage.setItem("refreshToken", result.data.refreshToken);

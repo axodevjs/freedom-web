@@ -11,6 +11,7 @@ export default function AuthLayout({
   const router = useRouter();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {

@@ -14,6 +14,7 @@ export const Header: React.FC = () => {
   const { isAuth, setIsAuth, checkAuth } = useAuthStore();
 
   const logout = () => {
+    if (typeof window === "undefined") return;
     localStorage.removeItem("accessToken");
     checkAuth();
   };

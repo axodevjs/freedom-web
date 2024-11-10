@@ -5,10 +5,11 @@ import { JobDetails } from "@/entities/job/ui/job-details";
 export default async function VacancyPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const jobs = await getJobs(); // Fetch all jobs
-  const job = jobs.find((job) => job.id === parseInt(params.id)); // Find the job by ID
+  const job = jobs.find((job) => job.id === parseInt(id)); // Find the job by ID
 
   if (!job) {
     return (
